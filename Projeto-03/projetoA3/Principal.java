@@ -88,28 +88,41 @@ public class Principal {
                     while (!"n".equals(encerrarCadastro)) {
                         int codigo = novoCodigo; //o atributo codigo é incrementado automaticamente
 
-                        //Aqui o programa recebe os dados do(s) produto(s) que o usuario quer criar.
-                        System.out.println("Informe o nome: ");
-                        String nome = sc.nextLine();
+                        /*
+                        Aqui o programa recebe os dados do(s) produto(s) que o usuario quer criar.
 
-                        System.out.println("Informe a data de fabricação: [00/00/00]");
-                        String dataFabricacao = sc.nextLine();
+                        temos também um simples try - catch para que o programa não encerre caso o dado inserido em preco seja inválido,
+                        por exemplo algum valor do tipo String. Em caso de valor inválido o programa encerra o cadastro atual.
+                         */
+                        try {
+                            System.out.println("Informe o nome: ");
+                            String nome = sc.nextLine();
 
-                        System.out.println("Informe a data de validade: [00/00/00]");
-                        String dataValidade = sc.nextLine();
+                            System.out.println("Informe a data de fabricação: [00/00/00]");
+                            String dataFabricacao = sc.nextLine();
 
-                        System.out.println("Informe o preço: [00,00]");
-                        double preco = sc.nextDouble();
-                        sc.nextLine();
+                            System.out.println("Informe a data de validade: [00/00/00]");
+                            String dataValidade = sc.nextLine();
 
-                        System.out.println("Informe a categoria: [Alimenticio, limpeza, etc]");
-                        String categoria = sc.nextLine();
+                            System.out.println("Informe o preço: [00,00]");
+                            double preco = sc.nextDouble();
+                            sc.nextLine();
 
-                        System.out.println("Informe a unidade de medida: [Pacote, unidade, etc]");
-                        String unidadeMedida = sc.nextLine();
+                            System.out.println("Informe a categoria: [Alimenticio, limpeza, etc]");
+                            String categoria = sc.nextLine();
 
-                        Produtos item = new Produtos(codigo, nome, dataFabricacao, dataValidade, preco, categoria, unidadeMedida); //aqui é aonde o programa cria o novo objeto
-                        listaDeProdutos.add(item); // aqui adicionamos o objeto ao ArrayList
+                            System.out.println("Informe a unidade de medida: [Pacote, unidade, etc]");
+                            String unidadeMedida = sc.nextLine();
+
+                            Produtos item = new Produtos(codigo, nome, dataFabricacao, dataValidade, preco, categoria, unidadeMedida); //aqui é aonde o programa cria o novo objeto
+                            listaDeProdutos.add(item); // aqui adicionamos o objeto ao ArrayList
+
+                        }catch (Exception e){
+                            //Exception pega todos os erros, seja ele uma String no lugar de um double ou um ponto no lugar de uma virgula
+                            System.out.println("Preço digitado inválido.");
+                            sc.nextLine();
+                        }
+
                         novoCodigo++; //toda vez que um objeto é criado, a variavel novoCodigo é incrementada
 
                         System.out.println("Deseja continuar cadastrando itens? [s/n]");
